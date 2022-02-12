@@ -1,5 +1,6 @@
 {
-    "name": "endropie/lumen-api-token",
+    "name": "endropie/lumen-micro-serve",
+    "version": "v0.1.0",
     "type": "library",
     "require": {
         "firebase/php-jwt": "5.5",
