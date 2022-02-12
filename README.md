@@ -3,8 +3,8 @@
 Simple microservice for Lumen Framework.
 - Authentication on Auth-Service.
 - Authorization on other services.
-- Model Filterabale.
-- Model JSON resource.
+- Model Filterable [soon].
+- Model JSON resource [soon].
 
 ## Installation
 
@@ -82,6 +82,32 @@ You now have access to `token()` method on your User model, eg:
 ```php
 $user = User::findOrFail(1);
 $user->token();
+```
+
+You should probably return this token via Login Controller or User Resource.
+
+### Authorization on other services.
+
+1. Publish the config file. This will create a `config/jwt.php` file for basic configuration options.
+
+```sh
+php artisan vendor:publish --provider="Endropie\LumenMicroserve\AuthTokenServiceProvider" --tag="config"
+```
+
+2. Protect your API routes using this new guard.
+
+```php
+$router->group(['middleware' => 'auth'], function () use ($router) {
+    $router->get('/user', function() {
+        return auth()->user()->toArray();
+    });
+});
+```
+
+You now have access to `auth()` helper function, eg:
+
+```php
+	auth()->user();
 ```
 
 You should probably return this token via Login Controller or User Resource.
