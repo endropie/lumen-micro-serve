@@ -1,0 +1,25 @@
+{
+    "name": "endropie/lumen-api-token",
+    "type": "library",
+    "require": {
+        "firebase/php-jwt": "5.5",
+		"illuminate/auth": "^8.0|^9.0",
+		"illuminate/contracts": "^8.0|^9.0",
+		"illuminate/database": "^8.0|^9.0",
+		"illuminate/http": "^8.0|^9.0",
+		"illuminate/support": "^8.0|^9.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Endropie\\LumenMicroServe\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "endropie",
+            "email": "hendrowibo@msn.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
