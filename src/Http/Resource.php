@@ -39,6 +39,20 @@ class Resource extends JsonResource
         return $this->mergeWhen($condition, [$name => $value]);
     }
 
+    protected function mergeIncludeInstance(string $name, $model, $resource)
+    {
+        return $this->mergeInclude($name, function() use ($model, $resource) {
+            return $model ? new $resource($model) : null;
+        });
+    }
+
+    protected function mergeIncludeCollection(string $name, $collection, $resource)
+    {
+        return $this->mergeInclude($name, function() use ($collection, $resource) {
+            return $resource::collection($collection);
+        });
+    }
+
     protected function mergeAttributes(array $visible = [], $callback = null)
     {
         $attributes = $this->resource->fresh()->toArray();
