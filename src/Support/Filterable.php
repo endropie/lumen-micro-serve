@@ -2,7 +2,7 @@
 
 namespace Endropie\LumenMicroServe\Support;
 
-use Endropie\ApiToolkit\Http\Filter;
+use Endropie\LumenMicroServe\Http\Filter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Stringable;
 

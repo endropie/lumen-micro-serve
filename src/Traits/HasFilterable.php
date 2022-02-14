@@ -2,7 +2,7 @@
 
 namespace Endropie\LumenMicroServe\Traits;
 
-use Endropie\ApiToolkit\Http\Filter;
+use Endropie\LumenMicroServe\Http\Filter;
 
 trait HasFilterable
 {
