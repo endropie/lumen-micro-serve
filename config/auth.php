@@ -13,13 +13,17 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'api',
+        'guard' => 'jwt',
     ],
 
     'guards' => [
-    	'api' => [
+    	'jwt' => [
             'driver' => 'jwt',
             'provider' => 'users',
+        ],
+    	'token' => [
+            'driver' => 'jwt',
+            'provider' => 'token',
         ],
     ],
 ];

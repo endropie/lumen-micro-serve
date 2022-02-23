@@ -4,7 +4,6 @@ namespace Endropie\LumenMicroServe\Auth\Guard;
 
 use Exception;
 use Endropie\LumenMicroServe\Support\JWT;
-use Endropie\LumenMicroServe\Auth\Tokenable;
 use Illuminate\Auth\GuardHelpers;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\UserProvider;

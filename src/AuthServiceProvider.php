@@ -4,6 +4,9 @@ namespace Endropie\LumenMicroServe;
 
 use Illuminate\Support\ServiceProvider;
 use Endropie\LumenMicroServe\Auth\Guard\JWTGuard;
+use Endropie\LumenMicroServe\Auth\Guard\TokenGuard;
+use Endropie\LumenMicroServe\Auth\Providers\TokenProvider;
+use Endropie\LumenMicroServe\Auth\TokenUser;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -32,8 +35,13 @@ class AuthServiceProvider extends ServiceProvider
 	}
 
 	private function extendAuthGuard(): void
-	{
-		auth()->extend('jwt', function ($app, $name, array $config) {
+	{	
+		$this->app->auth->extend('jwt', function ($app, $name, array $config) {
+
+			if ($config['provider'] == 'token') {
+				return new TokenGuard(new TokenProvider(TokenUser::class));
+			}
+
 			return new JWTGuard(auth()->createUserProvider($config['provider']));
 		});
 	}

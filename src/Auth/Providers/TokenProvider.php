@@ -1,6 +1,7 @@
 <?php
 namespace Endropie\LumenMicroServe\Auth\Providers;
 
+use Endropie\LumenMicroServe\Auth\TokenUser;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
 
@@ -20,9 +21,14 @@ class TokenProvider implements UserProvider
 
 	public function retrieveByToken ($identifier, $token)
     {
-        $this->user->make($identifier->jti, (array) $identifier->data);
+		if ($identifier->jti)
+		{
+			$user = new TokenUser(($identifier->data) ?? []);
+			$user->{$user->getAuthIdentifierName()} = $identifier->jti;
+			$this->user = $user;
+		}
 
-		return $identifier->data ? $this->user : null;
+		return $this->user ?? null;
 	}
 
 	public function updateRememberToken (Authenticatable $user, $token)
