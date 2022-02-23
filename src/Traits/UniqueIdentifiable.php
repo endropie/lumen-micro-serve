@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 trait  UniqueIdentifiable
 {
-	public function bootUniqueIdentifiable(): void
+	static function bootUniqueIdentifiable(): void
 	{
 		static::creating(function ($model) {
 
