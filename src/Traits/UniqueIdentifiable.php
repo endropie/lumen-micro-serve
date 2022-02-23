@@ -2,16 +2,20 @@
 
 namespace Endropie\LumenMicroServe\Traits;
 
-use Generator;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 trait  UniqueIdentifiable
 {
 	static function bootUniqueIdentifiable(): void
 	{
-		static::creating(function ($model) {
+		static::creating(function (Model $model) {
 
-            $model->setAttribute($model->getKeyNameUUID(), Str::uuid()->toString());
+            if (!$model->getKeyUUID()) 
+            {
+                $model->setAttribute($model->getKeyNameUUID(), Str::uuid()->toString());
+            }
+
 
             return $model;
         });
@@ -20,6 +24,11 @@ trait  UniqueIdentifiable
     public function getKeyNameUUID(): string
     {
         return $this->getKeyName();
+    }
+
+    public function getKeyUUID(): ?string
+    {
+        return $this->getKey();
     }
 
     public function getIncrementing()
