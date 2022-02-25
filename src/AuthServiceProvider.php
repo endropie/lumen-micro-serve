@@ -41,7 +41,7 @@ class AuthServiceProvider extends ServiceProvider
 			if ($config['provider'] == 'token') {
 				return new TokenGuard(new TokenProvider(TokenUser::class));
 			}
-
+			
 			return new JWTGuard(auth()->createUserProvider($config['provider']));
 		});
 	}
